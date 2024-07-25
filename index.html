@@ -14,11 +14,41 @@
             color: white;
             text-align: center;
             overflow: hidden;
+            cursor: url('greencandle.jpg') 32 32, auto; /* Custom cursor */
+        }
+        .marquee-container {
+            width: 100%;
+            background-color: black;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+        }
+        .marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 15s linear infinite;
+            font-size: 14px;
+            color: white;
+            padding: 10px 0;
+            font-family: monospace;
+        }
+        .marquee div {
+            display: inline-block;
+            width: 50%;
+            text-align: center;
+            white-space: nowrap;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
         .button-container {
             position: absolute;
             width: 100%;
-            height: 100%;
+            height: calc(100% - 40px); /* Adjust for marquee height */
+            top: 40px; /* Adjust for marquee height */
         }
         .button {
             position: absolute;
@@ -31,11 +61,11 @@
             border-radius: 50%;
         }
         .top-left {
-            top: 10px;
+            top: 50px; /* Adjust for marquee height */
             left: 10px;
         }
         .top-right {
-            top: 10px;
+            top: 50px; /* Adjust for marquee height */
             right: 10px;
         }
         .bottom-left {
@@ -178,6 +208,13 @@
     </style>
 </head>
 <body>
+    <div class="marquee-container">
+        <div class="marquee">
+            <div>$GSONIC // FIGHT YOUR DEMONS // THE ETERNAL SUNSHINE OF THE SPOTLESS MIND // $GSONIC // FIGHT YOUR DEMONS // THE ETERNAL SUNSHINE OF THE SPOTLESS MIND // </div>
+            <div>$GSONIC // FIGHT YOUR DEMONS // THE ETERNAL SUNSHINE OF THE SPOTLESS MIND // $GSONIC // FIGHT YOUR DEMONS // THE ETERNAL SUNSHINE OF THE SPOTLESS MIND //</div>
+        </div>
+    </div>
+
     <div class="video-container" id="video-container">
         <video autoplay muted loop id="background-video">
             <source src="video.mp4" type="video/mp4">
@@ -203,7 +240,8 @@
 
     <!-- Popup -->
     <div class="popup" id="popup">
-        <p>Beware, once you witness golden sonic your problems, insecurities & long forgotten traumas will be in the front of your mind, ready to be dealt with once and for all. A profoundly clear conscience awaits you.</p>
+        <p>Golden Sonic embodies the power to fight demons & restore peace to the conscience.</p>
+        <p>Golden sonic is the eternal sunshine of the spotless mind.</p>
         <p class="bold-text">Are you ready to fight your demons?</p>
         <div class="popup-buttons">
             <button class="popup-button yes-button" onclick="acceptTruth()">Yes</button>
@@ -221,6 +259,7 @@
         function acceptTruth() {
             document.getElementById('popup').style.display = 'none';
             document.getElementById('video-container').style.display = 'block';
+            document.body.style.background = 'none'; // Remove background image
             document.getElementById('overlay-video-container').style.display = 'block';
             document.getElementById('background-video').play();
             document.getElementById('overlay-video').play();
