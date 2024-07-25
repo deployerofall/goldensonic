@@ -14,7 +14,6 @@
             color: white;
             text-align: center;
             overflow: hidden;
-            cursor: url('greencandle.jpg'), auto; /* Fallback to default cursor */
         }
         .button-container {
             position: absolute;
@@ -60,10 +59,10 @@
                 transform: translate(-50%, -50%) translateY(0);
             }
             40% {
-                transform: translate(-50%, -50%) translateY(-30px;
+                transform: translate(-50%, -50%) translateY(-30px);
             }
             60% {
-                transform: translate(-50%, -50%) translateY(-15px;
+                transform: translate(-50%, -50%) translateY(-15px);
             }
         }
         .video-container {
@@ -227,47 +226,3 @@
             document.getElementById('overlay-video').play();
             document.getElementById('background-audio').play();
             startFloatingButtons();
-        }
-
-        function declineTruth() {
-            window.location.href = 'https://en.wikipedia.org/wiki/Ignorance_Is_Bliss';
-        }
-
-        function startFloatingButtons() {
-            const container = document.getElementById('floating-button-container');
-            for (let i = 0; i < 20; i++) {
-                const button = document.createElement('div');
-                button.className = 'floating-button';
-                button.innerHTML = '<img src="l5.jpg" alt="Buy Now!">';
-                button.style.setProperty('--color-speed', `${Math.random() * 2 + 1}s`);
-                container.appendChild(button);
-                animateButton(button, 4); // Same speed for all buttons
-            }
-        }
-
-        function animateButton(button, speed) {
-            const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-            let x = Math.random() * vw;
-            let y = Math.random() * vh;
-            let vx = (Math.random() - 0.5) * speed;
-            let vy = (Math.random() - 0.5) * speed;
-            
-            function move() {
-                x += vx;
-                y += vy;
-                
-                if (x <= 0 || x >= vw - button.offsetWidth) vx = -vx;
-                if (y <= 0 || y >= vh - button.offsetHeight) vy = -vy;
-                
-                button.style.left = x + 'px';
-                button.style.top = y + 'px';
-                
-                requestAnimationFrame(move);
-            }
-            
-            move();
-        }
-    </script>
-</body>
-</html>
